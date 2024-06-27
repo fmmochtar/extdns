@@ -1,26 +1,25 @@
 import CloudFlare
 import os
 from loguru import logger
-import distutils
 
-# def strtobool (val):
-#     """Convert a string representation of truth to true (1) or false (0).
-#     True values are 'y', 'yes', 't', 'true', 'on', and '1'; false values
-#     are 'n', 'no', 'f', 'false', 'off', and '0'.  Raises ValueError if
-#     'val' is anything else.
-#     """
-#     val = val.lower()
-#     if val in ('y', 'yes', 't', 'true', 'on', '1'):
-#         return 1
-#     elif val in ('n', 'no', 'f', 'false', 'off', '0'):
-#         return 0
-#     else:
-#         raise ValueError("invalid truth value %r" % (val,))
+def strtobool (val):
+    """Convert a string representation of truth to true (1) or false (0).
+    True values are 'y', 'yes', 't', 'true', 'on', and '1'; false values
+    are 'n', 'no', 'f', 'false', 'off', and '0'.  Raises ValueError if
+    'val' is anything else.
+    """
+    val = val.lower()
+    if val in ('y', 'yes', 't', 'true', 'on', '1'):
+        return 1
+    elif val in ('n', 'no', 'f', 'false', 'off', '0'):
+        return 0
+    else:
+        raise ValueError("invalid truth value %r" % (val,))
 
 def update(docker_records_list, ip):
     ttl = os.getenv('TTL', 60)
 
-    proxied_dns = bool(distutils.util.strtobool(os.getenv('PROXIED_DNS_RECORD', "false")))
+    proxied_dns = bool(strtobool(os.getenv('PROXIED_DNS_RECORD', "false")))
 
     zones = _get_zones()
     logger.info('INFO: got list of all zones')
