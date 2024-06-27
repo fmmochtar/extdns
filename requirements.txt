@@ -4,4 +4,6 @@ six
 paramiko
 requests
 loguru
-setuptools
+setuptools==59.5.0
+
+
