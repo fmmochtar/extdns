@@ -4,4 +4,4 @@ six
 paramiko
 requests
 loguru
-distutils
+setuptools
